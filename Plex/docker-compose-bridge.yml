@@ -14,8 +14,8 @@ services:
       - 32413:32413/udp
       - 32414:32414/udp
     environment:
-      - TZ=<timezone>
-      - PLEX_CLAIM=<claimToken>
+      - TZ=America/Chicago
+      - PLEX_CLAIM=claim-ywTiZeitBUuzey18Whs1
       - ADVERTISE_IP=http://<hostIPAddress>:32400/
     hostname: <hostname>
     volumes:
