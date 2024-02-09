@@ -1,4 +1,4 @@
-version: '3'
+version: '23'
 services:
   plex:
       image: plexinc/pms-docker:latest
@@ -6,12 +6,10 @@ services:
       restart: unless-stopped
       environment:
         - TZ=America/Chicago
-        - PLEX_CLAIM=claim-ywTiZeitBUuzey18Whs1
       network_mode: host
       volumes:
       - .:/config
       - .:/transcode
       - .:/data
-      ## this assumes the volume used is called "plex"
 volumes:
     plex:
