@@ -9,6 +9,6 @@ services:
       - PLEX_CLAIM=claim-ywTiZeitBUuzey18Whs1
     network_mode: host
     volumes:
-      - <path/to/plex/database>:/config
-      - <path/to/transcode/temp>:/transcode
-      - <path/to/media>:/data
+      - test-movies:/config
+      - test-movies:/transcode
+      - test-movies:/data
