@@ -1,19 +1,24 @@
-version: '3'
+version: "3.8"
 
 services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
     ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 67:67/udp
-      - 80:80/tcp
-      - 443:443/tcp
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
     environment:
-      - TZ=Europe/Berlin
-      - WEBPASSWORD=your-secret-password
+      TZ: 'America/Chicago' #this is the time zone
+      # WEBPASSWORD: 'set a secure password here or it will be random'
     volumes:
-      - etcd:/etc/pihole
-      - dnsmasq:/etc/dnsmasq.d
+       - './etc-pihole/:/etc/pihole/'
+       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    cap_add:
+      - NET_ADMIN
     restart: unless-stopped
