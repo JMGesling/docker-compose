@@ -8,9 +8,11 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/data:/config
-      - /path/to/movies:/movies #optional
-      - /path/to/downloadclient-downloads:/downloads #optional
+      - download:/config
+      - download:/movies #optional
+      - download:/downloads #optional
     ports:
       - 7878:7878
     restart: unless-stopped
+volumes:
+    download:
