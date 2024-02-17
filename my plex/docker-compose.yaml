@@ -21,9 +21,18 @@ services:
       - plex:/config
       - plex:/transcode
       - plex:/data
+      - media:/media
 volumes:
-    plex: # name of the alread-created volume for persistent storage
-      external: true
+  plex: # name of the alread-created volume for persistent storage
+    external: true
+  media:  #configuration of NFS Share on Container
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=10.0.2.15,rw,vers=4.1
+      device: ":/var/nfs/general/media" #Specific path for data on the host machine
+
 networks:
   testbridge: #name of the network you want the container in
     external: true
+
