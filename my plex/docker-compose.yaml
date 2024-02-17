@@ -7,7 +7,7 @@ services:
       environment:
         - TZ=America/Chicago
       networks: 
-        - testbridge
+        - testbridge #identified your external network already created.
       ports:
         - 32400:32400/tcp
         - 8324:8324/tcp
@@ -22,8 +22,8 @@ services:
       - plex:/transcode
       - plex:/data
 volumes:
-    plex:
+    plex: # name of the alread-created volume for persistent storage
       external: true
 networks:
-  testbridge:
+  testbridge: #name of the network you want the container in
     external: true
