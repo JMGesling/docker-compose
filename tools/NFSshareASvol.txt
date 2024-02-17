@@ -1,0 +1,5 @@
+ sudo docker volume create --driver local \
+  -o type=nfs \
+  -o o=addr="10.0.2.15,rw,nfsvers=4" \ #Specify server IP here
+  -o device=:/var/nfs/general/media/ \  #must be specific path to nfs area on server
+  media
