@@ -1,0 +1,24 @@
+## https://github.com/wiorca/docker-pia
+---
+version: "2.1"
+services:
+  docker-pia:
+    image: wiorca/docker-pia
+    container_name: docker-pia
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - PIA_USERNAME=username
+      - PIA_PASSWORD=password
+      - PIA_DEBUG_LOGGING=false
+      - PIA_PROTOCOL=openvpn
+      - PIA_PORT_FORWARD=false
+      - PIA_REGION=auto
+    volumes:
+      - /location/on/host:/config
+    dns:
+      - 8.8.8.8
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped

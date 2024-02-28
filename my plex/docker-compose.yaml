@@ -1,4 +1,4 @@
-version: '23'
+version: '3'
 services:
   plex:
       image: plexinc/pms-docker:latest
@@ -6,10 +6,29 @@ services:
       restart: unless-stopped
       environment:
         - TZ=America/Chicago
-      network_mode: host
+      networks: 
+        - testbridge #identified your external network already created.
+      ports:
+        - 32400:32400/tcp
+        - 8324:8324/tcp
+        - 32469:32469/tcp
+        - 1900:1900/udp
+        - 32410:32410/udp
+        - 32412:32412/udp
+        - 32413:32413/udp
+        - 32414:32414/udp
       volumes:
-      - .:/config
-      - .:/transcode
-      - .:/data
+      - plex:/config
+      - plex:/transcode
+      - plex:/data
+      - media:/media
 volumes:
-    plex:
+  plex: # name of the alread-created volume for persistent storage
+    external: true
+  media:  #NFS share should be tied to a docker volume, not config in the compose file
+    external: true
+
+networks:
+  testbridge: #name of the network you want the container in
+    external: true
+

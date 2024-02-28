@@ -4,15 +4,16 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    ports:
+    # network_mode: host  #use this for host network deployment, comment out the port links below. This is reportedly the simplest way to deploy PiHole
+    ports:  #if not using host network, should specify ports for use on bridge network. Works well with deploying PiHole on NAS devices or if you have hard port conflicts
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
-      - "80:80/tcp"
+      - "8080:80/tcp"
       - "443:443/tcp"
     environment:
       TZ: 'America/Chicago' #this is the time zone
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      WEBPASSWORD: 'c@nt311U'
     volumes:
        - './etc-pihole/:/etc/pihole/'
        - './etc-dnsmasq.d/:/etc/dnsmasq.d/'

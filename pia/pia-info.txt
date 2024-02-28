@@ -1,0 +1,25 @@
+Container images are configured using parameters passed at runtime (such as those above).
+Parameter 	Examples/Options 	Function
+PUID 	1000 	The nummeric user ID to run the application as, and assign to the user docker_user
+PGID 	1000 	The numeric group ID to run the application as, and assign to the group docker_group
+TZ=Europe/London 	The timezone to run the container in 	
+PIA_USERNAME 	username 	The username used to connect to PIA
+PIA_PASSWORD 	password 	The password associated with the username
+PIA_DEBUG_LOGGING 	true/false 	Enables or disables debug logging
+PIA_PROTOCOL 	openvpn, wireguard 	The protocol to use when connecting to PIA, which must be on the protocol list
+PIA_PORT_FORWARD 	true/false 	The port you have convigured to forward via PIA. Not used by this container, but made available
+PIA_REGION 	auto 	The location to connect to, which must be on the region list (piactl get regions)
+VPN_PORT 	Inactive or a number 	The port forward reported by the PIA client. Set automatically
+Volumes
+Volume 	Example 	Function
+/config 	/opt/docker/docker-pia 	The home directory of docker_user, and where configuration files will live
+
+Updating the image
+Via Docker Compose
+
+    Update all images: docker-compose pull
+        or update a single image: docker-compose pull docker-pia
+    Let compose update all containers as necessary: docker-compose up -d
+        or update a single container: docker-compose up -d docker-pia
+    You can also remove the old dangling images: docker image prune
+
