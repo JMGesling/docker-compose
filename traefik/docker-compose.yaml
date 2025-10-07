@@ -24,3 +24,5 @@ services:
     # networks:
     #   - your-traefik-network
     restart: unless-stopped
+    #track update
+    
